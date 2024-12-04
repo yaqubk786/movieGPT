@@ -11,6 +11,7 @@ import { signOut } from "firebase/auth";
 import { updateProfile } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../Utils/userSlice";
+import { USERS } from "../Utils/constants";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -30,10 +31,8 @@ const Login = () => {
     const emailValue = email.current.value || "";
     const passwordValue = password.current.value || "";
     const nameValue = isSignIn ? null : name.current?.value || "";
-    console.log(emailValue, passwordValue, nameValue, "nameValue");
 
     const message = CheckValid(emailValue, passwordValue, nameValue, isSignIn);
-    console.log(message);
     setErrorMsg(message);
     if (message) return;
     if (!isSignIn) {
@@ -44,8 +43,7 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: nameValue,
-            photoURL:
-              "https://avatars.githubusercontent.com/u/88783158?v=4&size=64",
+            photoURL: USERS,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -77,7 +75,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user, "signed in");
           navigate("/browse");
 
           // ...

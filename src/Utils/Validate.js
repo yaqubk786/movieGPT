@@ -1,5 +1,4 @@
 export const CheckValid = (email, password, name, isSignIn) => {
-  console.log("isSignIn========", isSignIn);
   const isEmailValid =
     /^[a-zA-Z0-9_.+\-]+[\x40][a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email);
   const isPasswordValid =
