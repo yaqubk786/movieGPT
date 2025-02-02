@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { addNowPlayingMovies } from "../Utils/moviesSlice";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
+import usePopularMovies from "../hooks/usePopularMovies";
+import useTopRated from "../hooks/useTopRated";
 
 const Browse = () => {
   const dispatch = useDispatch();
@@ -20,6 +22,9 @@ const Browse = () => {
   useEffect(() => {
     getNowPlaying();
   }, []);
+
+  usePopularMovies()
+  useTopRated()
   return (
     <>
       <div>
